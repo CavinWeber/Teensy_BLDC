@@ -66,4 +66,6 @@ class BLDC_Motor{
     void incrementCurrState();
     void decrementCurrState();
     void stopMotor();
+    int getState();
+    void setPower(float s);
 };

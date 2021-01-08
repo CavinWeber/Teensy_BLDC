@@ -13,3 +13,4 @@ BLDC_Motor motor = BLDC_Motor(7,8,9,10,11,12);
 
 
 
+void triggerPin();

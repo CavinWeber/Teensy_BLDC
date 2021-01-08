@@ -11,7 +11,7 @@ BLDC_Motor::BLDC_Motor(int en_a, int en_b, int en_c, int in_a, int in_b, int in_
     currState = 0; 
     direction = false;
     stopped = false;
-    power = 128;
+    power = 480;
 
     coilA.en_pin = _en_a;
     coilA.in_pin = _in_a;
@@ -47,9 +47,9 @@ BLDC_Motor::BLDC_Motor(int en_a, int en_b, int en_c, int in_a, int in_b, int in_
     state6.c = 1;
 
     analogWriteResolution(8);
-    analogWriteFrequency(in_a,50000);
-    analogWriteFrequency(in_b,50000);
-    analogWriteFrequency(in_c,50000);
+    analogWriteFrequency(in_a,20000);
+    analogWriteFrequency(in_b,20000);
+    analogWriteFrequency(in_c,20000);
     pinMode(en_a, OUTPUT);
     pinMode(en_b, OUTPUT);
     pinMode(en_c, OUTPUT);
@@ -68,7 +68,7 @@ BLDC_Motor::BLDC_Motor(int en_a, int en_b, int en_c, int in_a, int in_b, int in_
 }
 
 void BLDC_Motor::moveToStep(MotorPins m, int s){
-    if (!stopped){
+    // if (!stopped){
     digitalWrite(m.a.en_pin, motorStates[s].a < 2);
     digitalWrite(m.b.en_pin, motorStates[s].b < 2);
     digitalWrite(m.c.en_pin, motorStates[s].c < 2);
@@ -76,17 +76,17 @@ void BLDC_Motor::moveToStep(MotorPins m, int s){
     analogWrite(m.a.in_pin, (motorStates[s].a == 1) * power);
     analogWrite(m.b.in_pin, (motorStates[s].b == 1) * power);
     analogWrite(m.c.in_pin, (motorStates[s].c == 1) * power);
-    }
-    else
-    {
-    digitalWrite(m.a.en_pin, motorStates[s].a < 2);
-    digitalWrite(m.b.en_pin, 0);
-    digitalWrite(m.c.en_pin, 0);
+    // }
+    // else
+    // {
+    // digitalWrite(m.a.en_pin, motorStates[s].a < 2);
+    // digitalWrite(m.b.en_pin, 0);
+    // digitalWrite(m.c.en_pin, 0);
 
-    analogWrite(m.a.in_pin, 0);
-    analogWrite(m.b.in_pin, 0);
-    analogWrite(m.c.in_pin, 0);
-    }
+    // analogWrite(m.a.in_pin, 0);
+    // analogWrite(m.b.in_pin, 0);
+    // analogWrite(m.c.in_pin, 0);
+    // }
     
 }
 
@@ -115,4 +115,15 @@ void BLDC_Motor::decrementCurrState(){
 
 void BLDC_Motor::stopMotor(){
     stopped = true;
+    digitalWrite(_en_a, 0);
+    digitalWrite(_en_b, 0);
+    digitalWrite(_en_c, 0);
+
+    analogWrite(_in_a, 0);
+    analogWrite(_in_b, 0);
+    analogWrite(_in_c, 0);
+}
+
+void BLDC_Motor::setPower(float s){
+    power = s;
 }
