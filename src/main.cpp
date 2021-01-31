@@ -40,8 +40,8 @@ void loop() {
   // triggerPin();
   sensorVal = analogRead(A17);
   inputVal = analogRead(A3);
-  display.clearDisplay();
-  display.setCursor(0,0);
+  // display.clearDisplay();
+  // display.setCursor(0,0);
   display.println(inputVal);
   // display.display();
 

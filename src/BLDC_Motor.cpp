@@ -56,6 +56,7 @@ BLDC_Motor::BLDC_Motor(int en_a, int en_b, int en_c, int in_a, int in_b, int in_
     pinMode(in_a, OUTPUT);
     pinMode(in_b, OUTPUT);
     pinMode(in_c, OUTPUT);
+    // analogReadResolution()
 
     // Create new temp array and transfer its contents to the
     // global variable (I don't know of a better way to do this)
