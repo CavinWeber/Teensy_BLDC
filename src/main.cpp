@@ -9,11 +9,10 @@ void setup() {
   display.setTextColor(1,0);
   display.setTextSize(2);
   display.println("Testing!");
-  // display.display();
+  display.display();
   alreadyTriggered = false;
   sensorVal = 0;
   inputVal = 0;
-  // analogReadAveraging(10);
   attachInterrupt(38, incrementMotor, CHANGE);
 }
 
