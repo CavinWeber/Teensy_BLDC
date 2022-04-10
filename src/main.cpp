@@ -1,6 +1,7 @@
 #include <main.h>
 
-void setup() {
+void setup()
+{
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
   pinMode(TRIGGER_PIN, OUTPUT);
   delay(100);
@@ -16,12 +17,14 @@ void setup() {
   attachInterrupt(38, incrementMotor, CHANGE);
 }
 
-void loop() {
+void loop()
+{
   sensorVal = analogRead(A17);
   inputVal = analogRead(A3);
   display.clearDisplay();
   display.setCursor(0,0);
   display.println(inputVal);
+  display.println(motor.getRPM());
   display.display();
 
   motor.setPower(inputVal / 4);
@@ -29,29 +32,24 @@ void loop() {
   // motor.turnClockwise();
   // delay(500);
   // motor.stopMotor();
-  // delay(500);
+  delay(10);
 }
 
 void incrementMotor()
 {
-
     if (interruptDebounce.isTriggered())
   {
-     triggerPin();
+    //  triggerPin();
      motor.turnClockwise();
      interruptDebounce.reset();
   }
-
 }
 
 void triggerPin()
 {
-
       digitalWriteFast(TRIGGER_PIN, HIGH);
       delayMicroseconds(1);
       digitalWriteFast(TRIGGER_PIN, LOW);
-  
-
 }
 
 

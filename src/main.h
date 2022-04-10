@@ -35,6 +35,8 @@ float inputVal;
 
 bool alreadyTriggered;
 
+/** Triggers a short pulse for oscilloscope debugging
+ */
 void triggerPin();
 
 void incrementMotor();

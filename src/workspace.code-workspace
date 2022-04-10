@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"name": "Teensy_BLDC",
+			"path": ".."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"*.tcc": "cpp",
+			"algorithm": "cpp"
+		}
+	}
+}

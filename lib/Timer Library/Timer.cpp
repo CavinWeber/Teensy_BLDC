@@ -4,7 +4,8 @@
 /*
 For asynchronous checking of time state.
 */
-bool Timer::isTriggered() {
+bool Timer::isTriggered()
+{
   if (micros() - this->_startTime >= this->_duration) {
     _isTriggered = true;
     return true;
@@ -17,7 +18,8 @@ bool Timer::isTriggered() {
 /*
 Resets and immediately begins timer again.
 */
-void Timer::reset() {
+void Timer::reset()
+{
   _startTime = micros();
   _isTriggered = false;
 }
@@ -25,7 +27,8 @@ void Timer::reset() {
 /*
 Changes the duration of an existing timer, resets its current value, and immediately starts it again.
 */
-void Timer::setDuration(unsigned long t) {
+void Timer::setDuration(unsigned long t)
+{
   _duration = t;
   reset();
 }
